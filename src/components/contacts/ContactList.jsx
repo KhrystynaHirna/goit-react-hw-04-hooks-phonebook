@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import s from './ContactList.module.css';
  
 
-export const ContactList = ({ formData, onDeleteBtn }) => {
+const ContactList = ({ contacts, filter, filteredContacts, onDeleteBtn }) => {
 
+    let rendered = filter === '' ? contacts : filteredContacts();
+
+  
     return (
        
             <ul className={s.list}>
-                {formData.map(({ id, name, number }) => (
+                {rendered.map(({ id, name, number }) => (
                     <li key={id}
                         id={id}
                         name={name}
@@ -16,7 +19,7 @@ export const ContactList = ({ formData, onDeleteBtn }) => {
                         className={s.item}
                     >
                         {name}: {number}
-                        <button type='button' onClick={() => onDeleteBtn(id)} className={s.button}>
+                        <button type='button' onClick={evt => onDeleteBtn(evt)} className={s.button}>
                             Delete
                         </button>
                     </li>))}
@@ -25,12 +28,19 @@ export const ContactList = ({ formData, onDeleteBtn }) => {
     )             
 }
 
-ContactList.protoTypes = {
-    FormData: PropTypes.arrayOf(
-        PropTypes.shape({
-      id: PropTypes.string.isRequired,
+
+
+ContactList.propTypes = {
+  filter: PropTypes.string.isRequired,
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
       name: PropTypes.string.isRequired,
       number: PropTypes.string.isRequired,
-    })).isRequired,
-      onDeleteBtn: PropTypes.func.isRequired,
+      id: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  filteredContacts: PropTypes.func.isRequired,
+  onDeleteBtn: PropTypes.func.isRequired,
 };
+
+export default ContactList;
