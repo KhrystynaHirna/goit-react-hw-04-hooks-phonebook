@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import s from './ContactList.module.css';
  
 
-export const ContactList = ({ formData, onDeleteBtn }) => {
+export default function ContactList({ formData, onDeleteBtn }) {
 
     return (
        
@@ -33,3 +33,4 @@ ContactList.protoTypes = {
     })).isRequired,
       onDeleteBtn: PropTypes.func.isRequired,
 };
+
