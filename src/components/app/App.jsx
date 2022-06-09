@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import {ContactForm} from '../phonebookForm/ContactForm';
 import {ContactList} from '../contacts/ContactList';
 import { Filter } from '../filter/Filter';
-import {Container} from '../container/Container';
 import s from '../app/App.module.css';
 import { nanoid } from "nanoid";
 
@@ -50,7 +49,7 @@ export const App = () => {
   );
 
   return (
-      <Container className={s.container}>
+      <div className={s.container}>
       <h1>Phonebook</h1>
       <ContactForm onSubmit={onFormSubmit} contactList={contacts} />
       <h2 className={s.title}>Contacts</h2>
@@ -59,6 +58,6 @@ export const App = () => {
         contacts={visibleContacts}
         onDeleteContact={deleteContact}
       />
-    </Container>
+    </div>
   );
 };
