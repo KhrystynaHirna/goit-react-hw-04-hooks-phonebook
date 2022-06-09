@@ -5,7 +5,6 @@ import { Filter } from '../filter/Filter';
 import s from '../app/App.module.css';
 import { nanoid } from "nanoid";
 
-
 const initialContacts = [
   { id: nanoid(), name: 'Rosie Simpson', number: '459-12-56' },
   { id: nanoid(), name: 'Hermione Kline', number: '443-89-12' },
@@ -30,7 +29,10 @@ export const App = () => {
       prevState.filter(contact => contact.id !== contactId)
     );
   };
-
+  const onFilterInput = event => {
+    setFilter(event.currentTarget.value);
+};
+    
   const onFormSubmit = ({ name, number }) => {
     const contact = {
       id: nanoid(),
@@ -38,10 +40,6 @@ export const App = () => {
       number,
     };
     setContacts(contacts => [contact, ...contacts]);
-  };
-
-  const onFilterInput = event => {
-    setFilter(event.currentTarget.value);
   };
 
   const visibleContacts = contacts.filter(contact =>
@@ -54,9 +52,7 @@ export const App = () => {
       <ContactForm onSubmit={onFormSubmit} contactList={contacts} />
       <h2 className={s.title}>Contacts</h2>
       <Filter value={filter} onChange={onFilterInput} />
-      <ContactList
-        contacts={visibleContacts}
-        onDeleteContact={deleteContact}
+      <ContactList contacts={visibleContacts} onDeleteContact={deleteContact}
       />
     </div>
   );

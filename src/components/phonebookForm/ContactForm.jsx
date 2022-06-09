@@ -9,9 +9,6 @@ export const ContactForm = ({ onSubmit, contactList }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const nameInputId = nanoid();
-  const numberInputId = nanoid();
-
   const reset = () => {
     setName('');
     setNumber('');
@@ -47,6 +44,10 @@ export const ContactForm = ({ onSubmit, contactList }) => {
       reset();
     }
   };
+
+  const nameInputId = nanoid();
+  const numberInputId = nanoid();
+  
   return (
     <form onSubmit={handleSubmit} className={s.container}>
       <label htmlFor={nameInputId} className={s.label}>
