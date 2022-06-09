@@ -1,21 +1,21 @@
 import PropTypes from 'prop-types';
 import s from './Filter.module.css';
 
-export const Filter = ({ name, onFilterInput }) => {
-    return (
-        <label htmlFor="name" className={s.label}>
-            Find contacts by name
-            <input type="text"
-                name='filter'
-                value={name}
-                onChange={onFilterInput}
-                className={s.input}
-            />
-        </label>
-    )
+export const Filter = ({ value, onChange }) => {
+  return (
+    <label className={s.label}>
+      Find contacts by name
+      <input
+        className={s.input}
+        type="text"
+        value={value}
+        onChange={onChange}
+      />
+    </label>
+  );
 };
 
 Filter.propTypes = {
-    name: PropTypes.string,
-    onFilterInput: PropTypes.func,
-}
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
